@@ -2,20 +2,20 @@ import React from 'react';
 import { Server, Database, ShoppingCart, UserCheck, HardDrive } from 'lucide-react';
 
 const ServiceNode = ({ name, icon: Icon, isFailed, isRecovering }) => {
-  let borderColor = 'rgba(255, 255, 255, 0.1)';
-  let bgColor = 'rgba(255, 255, 255, 0.02)';
+  let borderColor = '#86EFAC';
+  let bgColor = '#F0FDF4';
   let glow = 'none';
 
   if (isFailed) {
-    borderColor = '#FF3366';
-    bgColor = 'rgba(255, 51, 102, 0.1)';
-    glow = '0 0 15px rgba(255, 51, 102, 0.4)';
+    borderColor = '#FCA5A5';
+    bgColor = '#FEF2F2';
+    glow = '0 4px 12px rgba(220, 38, 38, 0.08)';
   } else if (isRecovering) {
-    borderColor = '#00BFFF';
-    bgColor = 'rgba(0, 191, 255, 0.1)';
-    glow = '0 0 15px rgba(0, 191, 255, 0.4)';
+    borderColor = '#93C5FD';
+    bgColor = '#EFF6FF';
+    glow = '0 4px 12px rgba(37, 99, 235, 0.08)';
   } else {
-    borderColor = '#00FF66';
+    borderColor = '#86EFAC';
   }
 
   return (
@@ -33,15 +33,19 @@ const ServiceNode = ({ name, icon: Icon, isFailed, isRecovering }) => {
       transition: 'all 0.3s ease'
     }}>
       <div style={{
-        background: 'rgba(255,255,255,0.05)',
+        background: '#FFFFFF',
+        border: `1px solid ${borderColor}`,
         padding: '0.8rem',
         borderRadius: '50%',
-        color: isFailed ? '#FF3366' : isRecovering ? '#00BFFF' : '#E2E8F0'
+        color: isFailed ? '#DC2626' : isRecovering ? '#2563EB' : '#16A34A',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
       }}>
         <Icon size={24} />
       </div>
-      <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#E2E8F0' }}>{name}</span>
-      <span style={{ fontSize: '0.7rem', color: isFailed ? '#FF3366' : isRecovering ? '#00BFFF' : '#00FF66' }}>
+      <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#1F2937' }}>{name}</span>
+      <span style={{ fontSize: '0.7rem', fontWeight: 700, color: isFailed ? '#DC2626' : isRecovering ? '#2563EB' : '#16A34A' }}>
         {isFailed ? 'CRASHLOOP' : isRecovering ? 'RESTARTING' : 'RUNNING'}
       </span>
     </div>
@@ -65,7 +69,7 @@ const topologyStyles = {
   },
   line: {
     position: 'absolute',
-    borderLeft: '2px dashed rgba(255,255,255,0.1)',
+    borderLeft: '2px dashed #E5E7EB',
     zIndex: 0
   }
 };

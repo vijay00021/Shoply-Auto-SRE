@@ -1,28 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Dark Theme Color Palette */
-  --bg-dark: #0A0A0F;
-  --bg-panel: #13141F;
-  --bg-panel-hover: #1A1C29;
+  /* Light Theme Color Palette */
+  --bg-dark: #FAFAFB;
+  --bg-panel: #FFFFFF;
+  --bg-panel-hover: #F3F4F6;
   
-  --text-main: #FFFFFF;
-  --text-muted: #8A8F98;
+  --text-main: #1F2937;
+  --text-muted: #6B7280;
   
-  /* Accents */
-  --accent-cyan: #00F0FF;
-  --accent-pink: #FF007F;
-  --accent-purple: #7000FF;
-  --accent-glow: rgba(0, 240, 255, 0.2);
+  /* Accents - Light Green Preference */
+  --accent-cyan: #22C55E;
+  --accent-pink: #10B981;
+  --accent-purple: #86EFAC;
+  --accent-glow: rgba(34, 197, 94, 0.15);
   
   /* Status Colors from DevOps concepts */
-  --status-success: #00FF66;
-  --status-warning: #FF8A00;
-  --status-error: #FF3366;
-  --status-info: #00BFFF;
+  --status-success: #16A34A;
+  --status-warning: #D97706;
+  --status-error: #DC2626;
+  --status-info: #2563EB;
 
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-focus: rgba(0, 240, 255, 0.4);
+  --border-color: #E5E7EB;
+  --border-focus: #86EFAC;
   
   --font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
@@ -56,7 +56,7 @@ body {
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2a2d3e; 
+  background: #D1D5DB; 
 }
 
 /* Animations */

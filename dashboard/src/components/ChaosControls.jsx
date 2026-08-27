@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Play, AlertOctagon, RotateCcw } from 'lucide-react';
 
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
 const ChaosControls = ({ systemState, setSystemState }) => {
   const [triggering, setTriggering] = useState(false);
 
@@ -9,7 +11,7 @@ const ChaosControls = ({ systemState, setSystemState }) => {
     
     setTriggering(true);
     try {
-      const res = await fetch('http://localhost:8000/api/trigger_chaos', {
+      const res = await fetch(`${API_BASE}/api/trigger_chaos`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -27,7 +29,7 @@ const ChaosControls = ({ systemState, setSystemState }) => {
 
   const resetSystem = async () => {
     try {
-      await fetch('http://localhost:8000/api/reset', { method: 'POST' });
+      await fetch(`${API_BASE}/api/reset`, { method: 'POST' });
     } catch (err) {
       console.error("Failed to reset backend.", err);
     }
@@ -37,9 +39,9 @@ const ChaosControls = ({ systemState, setSystemState }) => {
     <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
       <button 
         style={{
-          background: systemState === 'healthy' ? 'rgba(255,0,127,0.1)' : 'rgba(255,255,255,0.05)',
-          color: systemState === 'healthy' ? '#FF007F' : '#8A8F98',
-          border: `1px solid ${systemState === 'healthy' ? '#FF007F' : 'transparent'}`,
+          background: systemState === 'healthy' ? '#FEF2F2' : '#F3F4F6',
+          color: systemState === 'healthy' ? '#DC2626' : '#9CA3AF',
+          border: `1px solid ${systemState === 'healthy' ? '#FCA5A5' : 'transparent'}`,
           padding: '0.8rem 1.2rem',
           borderRadius: '8px',
           cursor: systemState === 'healthy' && !triggering ? 'pointer' : 'not-allowed',
@@ -48,7 +50,7 @@ const ChaosControls = ({ systemState, setSystemState }) => {
           gap: '0.5rem',
           fontWeight: 600,
           transition: 'all 0.2s',
-          boxShadow: systemState === 'healthy' ? '0 0 10px rgba(255,0,127,0.2)' : 'none'
+          boxShadow: 'none'
         }}
         onClick={() => triggerFailure('payment_crash')}
         disabled={systemState !== 'healthy' || triggering}
@@ -59,9 +61,9 @@ const ChaosControls = ({ systemState, setSystemState }) => {
 
       <button 
         style={{
-          background: systemState === 'healthy' ? 'rgba(255,165,0,0.1)' : 'rgba(255,255,255,0.05)',
-          color: systemState === 'healthy' ? '#FFA500' : '#8A8F98',
-          border: `1px solid ${systemState === 'healthy' ? '#FFA500' : 'transparent'}`,
+          background: systemState === 'healthy' ? '#FFFBEB' : '#F3F4F6',
+          color: systemState === 'healthy' ? '#D97706' : '#9CA3AF',
+          border: `1px solid ${systemState === 'healthy' ? '#FDE68A' : 'transparent'}`,
           padding: '0.8rem 1.2rem',
           borderRadius: '8px',
           cursor: systemState === 'healthy' && !triggering ? 'pointer' : 'not-allowed',
@@ -70,7 +72,7 @@ const ChaosControls = ({ systemState, setSystemState }) => {
           gap: '0.5rem',
           fontWeight: 600,
           transition: 'all 0.2s',
-          boxShadow: systemState === 'healthy' ? '0 0 10px rgba(255,165,0,0.2)' : 'none'
+          boxShadow: 'none'
         }}
         onClick={() => triggerFailure('frontend_spike')}
         disabled={systemState !== 'healthy' || triggering}
@@ -81,9 +83,9 @@ const ChaosControls = ({ systemState, setSystemState }) => {
 
       <button 
         style={{
-          background: 'rgba(0,240,255,0.1)',
-          color: '#00F0FF',
-          border: '1px solid #00F0FF',
+          background: '#E8F5E9',
+          color: '#16A34A',
+          border: '1px solid #A7F3D0',
           padding: '0.8rem 1.2rem',
           borderRadius: '8px',
           cursor: 'pointer',
@@ -101,15 +103,15 @@ const ChaosControls = ({ systemState, setSystemState }) => {
       <div style={{ 
         flex: 1, 
         padding: '1rem',
-        background: 'rgba(0,0,0,0.3)',
+        background: '#FAFAFB',
         borderRadius: '8px',
-        border: '1px solid rgba(255,255,255,0.05)',
+        border: '1px solid #E5E7EB',
         display: 'flex',
         flexDirection: 'column',
         gap: '0.5rem'
       }}>
-         <h4 style={{ margin: 0, color: '#E2E8F0', fontSize: '0.9rem' }}>Demo Script Control</h4>
-         <p style={{ margin: 0, fontSize: '0.8rem', color: '#8A8F98' }}>
+         <h4 style={{ margin: 0, color: '#1F2937', fontSize: '0.9rem' }}>Demo Script Control</h4>
+         <p style={{ margin: 0, fontSize: '0.8rem', color: '#6B7280' }}>
            Clicking "Inject Failure" will initiate the automated AI RCA and auto-remediation demonstration pipeline directly calling the Python Backend.
          </p>
       </div>

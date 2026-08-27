@@ -11,12 +11,12 @@ const AgentTerminal = ({ logs, systemState }) => {
 
   return (
     <div style={{ 
-      background: '#040406', 
+      background: '#F9FAFB', 
       borderRadius: '8px', 
       padding: '1rem',
       height: '300px',
       overflowY: 'auto',
-      border: '1px solid rgba(255,255,255,0.05)',
+      border: '1px solid #E5E7EB',
       fontFamily: '"Fira Code", monospace',
       display: 'flex',
       flexDirection: 'column',
@@ -24,7 +24,7 @@ const AgentTerminal = ({ logs, systemState }) => {
     }} ref={terminalRef}>
       
       {logs.length === 0 ? (
-        <div style={{ color: '#4A5568', fontStyle: 'italic', fontSize: '0.85rem' }}>
+        <div style={{ color: '#71717A', fontStyle: 'italic', fontSize: '0.85rem' }}>
           [&gt;] Connection established...
           <br/>
           [&gt;] Agents standing by in IDLE state.
@@ -32,9 +32,9 @@ const AgentTerminal = ({ logs, systemState }) => {
       ) : (
         logs.map((log, i) => (
           <div key={i} className="agent-log animate-fade-in">
-            <span style={{ color: '#8A8F98', minWidth: '80px' }}>[{log.timestamp}]</span>
+            <span style={{ color: '#71717A', minWidth: '80px' }}>[{log.timestamp}]</span>
             <span className={`agent-name agent-${log.agent}`}>[{log.agent}]</span>
-            <span style={{ color: '#E2E8F0' }}>{log.message}</span>
+            <span style={{ color: '#1F2937' }}>{log.message}</span>
           </div>
         ))
       )}

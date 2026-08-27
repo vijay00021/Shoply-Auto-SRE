@@ -14,21 +14,21 @@ const ObservabilityChart = ({ data, systemState }) => {
           <AreaChart data={chartData} margin={{ top: 5, right: 0, left: -20, bottom: 0 }}>
             <defs>
               <linearGradient id="colorLatency" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor={systemState !== 'healthy' ? '#FF8A00' : '#00F0FF'} stopOpacity={0.3}/>
-                <stop offset="95%" stopColor={systemState !== 'healthy' ? '#FF8A00' : '#00F0FF'} stopOpacity={0}/>
+                <stop offset="5%" stopColor={systemState !== 'healthy' && systemState !== 'recovering' ? '#DC2626' : '#22C55E'} stopOpacity={0.2}/>
+                <stop offset="95%" stopColor={systemState !== 'healthy' && systemState !== 'recovering' ? '#DC2626' : '#22C55E'} stopOpacity={0}/>
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" vertical={false} />
             <XAxis dataKey="time" hide />
-            <YAxis stroke="rgba(255,255,255,0.3)" fontSize={11} tickFormatter={(val) => `${val}ms`} />
+            <YAxis stroke="#9CA3AF" fontSize={11} tickFormatter={(val) => `${val}ms`} />
             <Tooltip 
-              contentStyle={{ background: '#13141F', border: '1px solid rgba(255,255,255,0.1)' }}
-              itemStyle={{ color: '#E2E8F0' }}
+              contentStyle={{ background: '#FFFFFF', border: '1px solid #E5E7EB', borderRadius: '6px' }}
+              itemStyle={{ color: '#1F2937' }}
             />
             <Area 
               type="monotone" 
               dataKey="latency" 
-              stroke={systemState !== 'healthy' && systemState !== 'recovering' ? '#FF8A00' : '#00F0FF'} 
+              stroke={systemState !== 'healthy' && systemState !== 'recovering' ? '#DC2626' : '#22C55E'} 
               fillOpacity={1} 
               fill="url(#colorLatency)" 
               strokeWidth={2}
@@ -42,14 +42,14 @@ const ObservabilityChart = ({ data, systemState }) => {
       <div style={{ flex: 1, minHeight: 0 }}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={chartData} margin={{ top: 5, right: 0, left: -20, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" vertical={false} />
             <XAxis dataKey="time" hide />
-            <YAxis stroke="rgba(255,255,255,0.3)" fontSize={11} tickFormatter={(val) => `${val}%`} />
+            <YAxis stroke="#9CA3AF" fontSize={11} tickFormatter={(val) => `${val}%`} />
              <Tooltip 
-              contentStyle={{ background: '#13141F', border: '1px solid rgba(255,255,255,0.1)' }}
-              itemStyle={{ color: '#E2E8F0' }}
+              contentStyle={{ background: '#FFFFFF', border: '1px solid #E5E7EB', borderRadius: '6px' }}
+              itemStyle={{ color: '#1F2937' }}
             />
-            <Line type="monotone" dataKey="errors" stroke="#FF007F" strokeWidth={2} dot={false} isAnimationActive={false} />
+            <Line type="monotone" dataKey="errors" stroke="#DC2626" strokeWidth={2} dot={false} isAnimationActive={false} />
           </LineChart>
         </ResponsiveContainer>
       </div>

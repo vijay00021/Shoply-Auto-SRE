@@ -4,13 +4,13 @@
   top: 0;
   height: 100vh;
   width: 260px; /* Full width like ChatGPT */
-  background: #171717; /* ChatGPT dark theme background */
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  background: #FFFFFF; 
+  border-right: 1px solid #E5E7EB;
   display: flex;
   flex-direction: column;
   padding: 1rem 0.8rem;
   z-index: 9999;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+  box-shadow: 2px 0 10px rgba(0,0,0,0.02);
   transition: width 0.3s ease;
 }
 
@@ -25,11 +25,11 @@
   transition: background 0.2s;
 }
 .admin-sidebar-brand:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: #F3F4F6;
 }
 
 .brand-title {
-  color: #ECECEC;
+  color: #1F2937;
   font-weight: 600;
   font-size: 1.1rem;
   letter-spacing: 0.5px;
@@ -45,7 +45,7 @@
 .sidebar-btn {
   background: transparent;
   border: none;
-  color: #ECECEC;
+  color: #4B5563;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -58,22 +58,31 @@
   width: 100%;
 }
 
+.sidebar-btn svg {
+  color: #22C55E;
+}
+
 .sidebar-btn span {
   font-weight: 500;
 }
 
 .sidebar-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: #F3F4F6;
+  color: #1F2937;
 }
 
 .sidebar-btn.active {
-  background: rgba(255, 255, 255, 0.1);
-  color: #FFFFFF;
+  background: #E8F5E9;
+  color: #15803D;
   font-weight: 600;
 }
 
+.sidebar-btn.active svg {
+  color: #15803D;
+}
+
 .admin-sidebar-footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid #E5E7EB;
   padding-top: 1rem;
   margin-top: 1rem;
 }
@@ -86,16 +95,17 @@
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.2s;
-  color: #ECECEC;
+  color: #4B5563;
   font-weight: 500;
   font-size: 0.9rem;
 }
 .admin-profile-mini:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: #F3F4F6;
+  color: #1F2937;
 }
 
 .avatar {
-  background: linear-gradient(135deg, #00F0FF, #7000FF);
+  background: #22C55E;
   color: white;
   width: 32px;
   height: 32px;

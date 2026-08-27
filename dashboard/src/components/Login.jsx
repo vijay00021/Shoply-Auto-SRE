@@ -52,7 +52,7 @@ const Login = () => {
     <div className="login-root">
       <div className="login-container animate-fade-in">
         <div className="login-header">
-          <Zap color="#00F0FF" size={32} />
+          <Zap color="#22C55E" size={32} />
           <h2>{isLogin ? 'Welcome Back' : 'Create Account'}</h2>
           <p>Access the TechnoGear Network.</p>
         </div>
@@ -127,7 +127,7 @@ const Login = () => {
         </div>
         
         {/* Temporary shortcut helper for reviewers */}
-        <div style={{marginTop: '2rem', fontSize: '0.75rem', color: '#4A5568', textAlign: 'center'}}>
+        <div style={{marginTop: '2rem', fontSize: '0.75rem', color: '#71717A', textAlign: 'center'}}>
           <p>Demo accounts (auto-configured):<br/>admin@technogear.com (Admin) | demo@technogear.com (User)</p>
           <button 
             type="button" 
@@ -137,8 +137,8 @@ const Login = () => {
                  {email: 'demo@technogear.com', password: 'password', role: 'user', name: 'Demo User'}
                ]));
                alert("Demo accounts injected into localStorage!");
-            }}
-            style={{background:'none', border:'1px solid #4A5568', color:'#4A5568', fontSize:'0.7rem', marginTop:'0.5rem', cursor: 'pointer', borderRadius: '4px', padding:'2px 5px'}}
+             }}
+             style={{background:'none', border:'1px solid #D1D5DB', color:'#71717A', fontSize:'0.7rem', marginTop:'0.5rem', cursor: 'pointer', borderRadius: '4px', padding:'2px 5px'}}
           >
              Inject Demo Data
           </button>

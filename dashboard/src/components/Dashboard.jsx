@@ -6,6 +6,8 @@ import TopologyMap from './TopologyMap';
 import ObservabilityChart from './ObservabilityChart';
 import ChaosControls from './ChaosControls';
 
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
 const Dashboard = () => {
   const [systemState, setSystemState] = useState('healthy'); // healthy, anomaly, rca, remediation, recovering
   const [logs, setLogs] = useState([]);
@@ -23,8 +25,8 @@ const Dashboard = () => {
     const pollBackend = async () => {
       try {
         const [statusRes, metricsRes] = await Promise.all([
-          fetch('http://localhost:8000/api/status'),
-          fetch('http://localhost:8000/api/metrics')
+          fetch(`${API_BASE}/api/status`),
+          fetch(`${API_BASE}/api/metrics`)
         ]);
         
         if (statusRes.ok) {

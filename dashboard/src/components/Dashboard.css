@@ -21,7 +21,7 @@
 }
 
 .brand-logo {
-  background: rgba(0, 240, 255, 0.1);
+  background: rgba(34, 197, 94, 0.1);
   padding: 0.5rem;
   border-radius: 8px;
   display: flex;
@@ -34,9 +34,7 @@
   font-size: 1.5rem;
   font-weight: 700;
   margin: 0;
-  background: linear-gradient(90deg, #FFFFFF, #B0B5C0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--text-main);
 }
 
 .brand-subtitle {
@@ -52,7 +50,7 @@
   font-weight: 600;
   padding: 0.5rem 1rem;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--bg-panel);
   border: 1px solid var(--border-color);
 }
 
@@ -66,7 +64,7 @@
 
 .status-healthy .pulse-dot { background: var(--status-success); box-shadow: 0 0 10px var(--status-success); }
 .status-anomaly .pulse-dot { background: var(--status-warning); box-shadow: 0 0 10px var(--status-warning); animation: pulseGlow 1.5s infinite; }
-.status-rca .pulse-dot { background: var(--accent-purple); box-shadow: 0 0 10px var(--accent-purple); animation: pulseGlow 1s infinite; }
+.status-rca .pulse-dot { background: var(--status-error); box-shadow: 0 0 10px var(--status-error); animation: pulseGlow 1s infinite; }
 .status-remediation .pulse-dot { background: var(--status-info); box-shadow: 0 0 10px var(--status-info); animation: pulseGlow 1s infinite; }
 .status-recovering .pulse-dot { background: var(--status-success); box-shadow: 0 0 10px var(--status-success); }
 
@@ -93,22 +91,29 @@
   flex-direction: column;
   transition: transform 0.2s, box-shadow 0.2s;
 }
-.panel-card:hover { border-color: rgba(255,255,255,0.15); }
+.panel-card:hover { 
+  border-color: #22C55E; 
+  box-shadow: 0 4px 20px rgba(34, 197, 94, 0.05);
+}
 
 .panel-header {
   padding: 1rem 1.2rem;
-  background: rgba(0, 0, 0, 0.2);
+  background: #FAFAFB;
   border-bottom: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
+.panel-header svg {
+  color: #22C55E;
+}
+
 .panel-header h2 {
   font-size: 1rem;
   font-weight: 600;
   margin: 0;
-  color: #E2E8F0;
+  color: var(--text-main);
 }
 
 .panel-content {
@@ -124,7 +129,7 @@
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.85rem;
   padding: 0.4rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid var(--border-color);
   display: flex;
   gap: 0.8rem;
 }
@@ -134,8 +139,8 @@
   min-width: 140px;
 }
 
-.agent-Monitoring { color: #00BFFF; }
-.agent-Analysis { color: #9D00FF; }
-.agent-RCA { color: #FF00AA; }
-.agent-Remediation { color: #00FF66; }
-.agent-Deployment { color: #FF8A00; }
+.agent-Monitoring { color: #2563EB; }
+.agent-Analysis { color: #7C3AED; }
+.agent-RCA { color: #DB2777; }
+.agent-Remediation { color: #16A34A; }
+.agent-Deployment { color: #D97706; }

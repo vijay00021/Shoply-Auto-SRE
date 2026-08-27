@@ -36,7 +36,7 @@ const AdminSidebar = () => {
   return (
     <div className="admin-sidebar-root animate-fade-in">
       <div className="admin-sidebar-brand" title="AutoSRE Admin Mode">
-        <ShieldAlert size={24} color="#FF007F" />
+        <ShieldAlert size={24} color="#22C55E" />
         <span className="brand-title">Admin Console</span>
       </div>
       
