@@ -81,6 +81,16 @@
   color: #15803D;
 }
 
+.sidebar-badge {
+  margin-left: auto;
+  background: #FEE2E2;
+  color: #DC2626;
+  border-radius: 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+}
+
 .admin-sidebar-footer {
   border-top: 1px solid #E5E7EB;
   padding-top: 1rem;

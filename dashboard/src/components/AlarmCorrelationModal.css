@@ -1,0 +1,230 @@
+.correlation-modal-overlay {
+  position: fixed;
+  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.correlation-modal-card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 950px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.correlation-header {
+  padding: 1.2rem 1.5rem;
+  background: #FAFAFB;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  /* header stays pinned while body scrolls */
+}
+
+.correlation-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  /* lets the body scroll inside the 90vh card */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.incident-summary-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  background: #F9FAFB;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.incident-summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.incident-summary-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.incident-summary-val {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.correlation-chart-box {
+  background: #FFFFFF;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  height: 260px;
+  position: relative;
+}
+
+.timeline-card {
+  background: #FAFAFB;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.2rem;
+}
+
+.timeline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.timeline-list::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: #E5E7EB;
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -1.5rem;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 2px solid var(--accent-cyan);
+}
+
+.timeline-item.sev-CRITICAL .timeline-dot {
+  border-color: #DC2626;
+  background: #FEE2E2;
+}
+
+.timeline-item.sev-ERROR .timeline-dot {
+  border-color: #DC2626;
+}
+
+.timeline-item.sev-WARNING .timeline-dot {
+  border-color: #D97706;
+}
+
+.timeline-item.sev-INFO .timeline-dot {
+  border-color: #2563EB;
+}
+
+.timeline-time {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: monospace;
+}
+
+.timeline-msg {
+  font-size: 0.88rem;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+/* Agent Findings & Guardrail Layer */
+.agent-findings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.8rem;
+  background: #FFFFFF;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.agent-finding-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.agent-finding-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.agent-finding-val {
+  font-size: 0.88rem;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.guardrail-card {
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.guardrail-card.blocked {
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+}
+
+.guardrail-card.auto {
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+}
+
+.approval-action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #FAF5FF;
+  border: 1px solid #DDD6FE;
+  border-radius: 8px;
+  padding: 0.9rem 1.2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}

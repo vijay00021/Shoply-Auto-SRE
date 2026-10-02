@@ -19,13 +19,27 @@ def analyze_logs(logs_context):
             break
             
     if impacted_svc != "unknown":
+        lc = logs_context.lower()
+        if "config" in lc:
+            pattern = "Configuration Drift"
+        elif "schema" in lc:
+            pattern = "Database Schema Conflict"
+        elif "cache" in lc:
+            pattern = "Stale Cache Degradation"
+        elif "traffic" in lc or "spike" in lc or "surge" in lc:
+            pattern = "High Traffic Volume Surge"
+        elif "crash" in lc or "fatal" in lc or "nullpointer" in lc:
+            pattern = "Fatal Pod Crash"
+        else:
+            pattern = "High Error Rate / Latency Spike"
+
         return {
-            "summary": f"{impacted_svc.capitalize()} Service High Error Rate / Latency Spike detected in logs.",
+            "summary": f"{impacted_svc.capitalize()} Service {pattern} detected in logs.",
             "impacted_service": impacted_svc,
             "error_type": "ServiceDegradation",
             "thought_process": prompt_thought
         }
-        
+
     return {
         "summary": "No specific critical error patterns detected.",
         "impacted_service": "unknown",

@@ -1,26 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
-import { Activity, Server, ShieldAlert, TerminalSquare } from 'lucide-react';
+import { Activity, Server, ShieldAlert, Bot } from 'lucide-react';
 import AgentTerminal from './AgentTerminal';
 import TopologyMap from './TopologyMap';
-import ObservabilityChart from './ObservabilityChart';
 import ChaosControls from './ChaosControls';
+import AutonomyStatus from './AutonomyStatus';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 const Dashboard = () => {
   const [systemState, setSystemState] = useState('healthy'); // healthy, anomaly, rca, remediation, recovering
   const [logs, setLogs] = useState([]);
-  const [metrics, setMetrics] = useState([]);
   const [failingNode, setFailingNode] = useState(null);
 
-  // Generate initial baseline metrics
-  useEffect(() => {
-    // start empty, we'll build it up
-    setMetrics([]);
-  }, []);
-
-  // Poll backend for system status, logs, and metrics
+  // Poll backend for system status and logs
   useEffect(() => {
     const pollBackend = async () => {
       try {
@@ -45,25 +38,6 @@ const Dashboard = () => {
             if (metricsData['paymentservice']?.error_rate > 50) return 'payment';
             if (metricsData['frontend']?.error_rate > 15) return 'frontend';
             return prev;
-          });
-
-          setMetrics(prev => {
-            const newData = [...prev];
-            if (newData.length > 20) newData.shift();
-            
-            const lastTime = newData.length > 0 ? newData[newData.length - 1].time : 0;
-            
-            // For the main chart, let's aggregate or show frontend + payment metrics
-            const payment = metricsData['paymentservice'] || {latency_p95_ms: 0, error_rate: 0};
-            const frontend = metricsData['frontend'] || {latency_p95_ms: 0, error_rate: 0};
-            
-            newData.push({
-              time: lastTime + 1,
-              latency: payment.latency_p95_ms, // track payment latency
-              frontendLatency: frontend.latency_p95_ms, // track frontend latency
-              errors: frontend.error_rate // track frontend errors as percentage
-            });
-            return newData;
           });
         }
       } catch (error) {
@@ -99,7 +73,7 @@ const Dashboard = () => {
 
       {/* Main Grid Layout */}
       <div className="dashboard-grid">
-        {/* Left Column: Observability & Topology */}
+        {/* Left Column: Topology & Autonomy Status */}
         <div className="grid-left">
           <section className="panel-card topology-panel">
             <div className="panel-header">
@@ -111,13 +85,13 @@ const Dashboard = () => {
             </div>
           </section>
 
-          <section className="panel-card metrics-panel">
+          <section className="panel-card autonomy-status-panel">
             <div className="panel-header">
               <Activity size={18} />
-              <h2>Observability (Grafana View)</h2>
+              <h2>Autonomy Status & Health</h2>
             </div>
             <div className="panel-content">
-              <ObservabilityChart data={metrics} systemState={systemState} />
+              <AutonomyStatus />
             </div>
           </section>
         </div>
@@ -139,8 +113,8 @@ const Dashboard = () => {
 
           <section className="panel-card terminal-panel">
             <div className="panel-header">
-              <TerminalSquare size={18} />
-              <h2>Multi-Agent Terminal</h2>
+              <Bot size={18} />
+              <h2>Autonomous Operations</h2>
             </div>
             <div className="panel-content">
               <AgentTerminal logs={logs} systemState={systemState} />

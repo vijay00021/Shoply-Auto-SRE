@@ -21,6 +21,29 @@ const AdminSidebar = () => {
     }
   }, [location.pathname]);
 
+  const [activeAlarmCount, setActiveAlarmCount] = useState(0);
+
+  // Poll for active alarms count to display badge on Alarms button
+  useEffect(() => {
+    if (!isAdmin) return;
+    const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+    const checkActiveAlarms = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/api/alarms?status=active`);
+        if (res.ok) {
+          const data = await res.json();
+          const active = data.filter(a => a.state === 'FIRING' || a.state === 'AWAITING_APPROVAL').length;
+          setActiveAlarmCount(active);
+        }
+      } catch (err) {
+        // Silently ignore if backend is loading
+      }
+    };
+    checkActiveAlarms();
+    const timer = setInterval(checkActiveAlarms, 3000);
+    return () => clearInterval(timer);
+  }, [isAdmin]);
+
   // Manage body class for layout shifting
   useEffect(() => {
     if (isAdmin) {
@@ -59,7 +82,7 @@ const AdminSidebar = () => {
 
         <button 
           className={`sidebar-btn ${location.pathname.startsWith('/history') ? 'active' : ''}`}
-          onClick={() => console.log('Navigate to History')}
+          onClick={() => navigate('/history')}
         >
           <History size={18} />
           <span>History</span>
@@ -67,7 +90,7 @@ const AdminSidebar = () => {
 
         <button 
           className={`sidebar-btn ${location.pathname.startsWith('/graphs') ? 'active' : ''}`}
-          onClick={() => console.log('Navigate to Graphs')}
+          onClick={() => navigate('/graphs')}
         >
           <LineChart size={18} />
           <span>Graphs</span>
@@ -75,10 +98,13 @@ const AdminSidebar = () => {
 
         <button 
           className={`sidebar-btn ${location.pathname.startsWith('/alarms') ? 'active' : ''}`}
-          onClick={() => console.log('Navigate to Alarms')}
+          onClick={() => navigate('/alarms')}
         >
           <Bell size={18} />
           <span>Alarms</span>
+          {activeAlarmCount > 0 && (
+            <span className="sidebar-badge">{activeAlarmCount}</span>
+          )}
         </button>
       </div>
 
